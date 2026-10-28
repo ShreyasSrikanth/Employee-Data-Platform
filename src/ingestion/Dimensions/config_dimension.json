@@ -1,0 +1,18 @@
+{
+    "source": {
+        "gdrive_file_ids": {
+            "DimCancellationReason.csv"     : "1DlttKk_V8E7FlH_d_h7RDmyZz6vM9z3P",
+            "DimCounty.csv"                 : "1zZMcSbGoCfT373UyKdlAGp1mYHkjeNPR",
+            "DimPeople.csv"                 : "1pjA84d5kpaehxuWcnmKyldc5EEWdwTp_",
+            "DimShrinkageType.csv"          : "17fcUCses3anWnOpN984_cdyBxa1IGQF7"
+        },
+        "gdrive_base_url"  :  "https://drive.google.com/uc?export=download&id={file_id}"
+    },
+    "target": {
+        "base_path"           : "/Volumes/employeedataplatform/bronze/raw_data",
+        "catalog"             : "employeedataplatform",
+        "schema"              : "bronze",
+        "volume"              : "raw_data",
+        "destination_folder"  : "Dimensions"
+    }
+}

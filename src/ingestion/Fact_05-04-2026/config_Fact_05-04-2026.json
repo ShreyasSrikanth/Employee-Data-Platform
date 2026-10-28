@@ -1,0 +1,17 @@
+{
+    "source": {
+        "gdrive_file_ids": {
+            "FactShift_05_04_2026.csv"      : "1b5OnBx41ZbGiBIFGMx6UzeUHKGaWb_WK",
+            "FactShrinkage_05_04_2026.csv"  : "14AWBonxerz0t6OAXk8-KCNLWQMveeGo8",
+            "FactWork_05_04_2026.csv"       : "1a33AUiIC-FLKMeun6tQ8O3D8cB0c1LX9"
+        },
+        "gdrive_base_url"  :  "https://drive.google.com/uc?export=download&id={file_id}"
+    },
+    "target": {
+        "base_path"           : "/Volumes/employeedataplatform/bronze/raw_data",
+        "catalog"             : "employeedataplatform",
+        "schema"              : "bronze",
+        "volume"              : "raw_data",
+        "destination_folder"  : "Fact_05_04_2026"
+    }
+}
