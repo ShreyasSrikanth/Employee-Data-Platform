@@ -1,0 +1,48 @@
+
+{
+    "dimpeople": {
+        "source_table": "employeedataplatform.bronze.dimpeople",
+        "target_table": "employeedataplatform.silver.dimpeople",
+        "key_columns": ["people_id"],
+        "drop_columns": ["file_path", "employee_name"],
+        "rename_columns": {
+            "surname": "last_name"
+        },
+        "date_columns": ["hire_date"],
+        "timestamp_columns": ["last_updated_timestamp"],
+        "yes_no_columns": []
+    },
+
+    "dimcounty": {
+        "source_table": "employeedataplatform.bronze.dimcounty",
+        "target_table": "employeedataplatform.silver.dimcounty",
+        "key_columns": ["county_id"],
+        "drop_columns": ["file_path"],
+        "rename_columns": {},
+        "date_columns": [],
+        "timestamp_columns": ["last_updated_timestamp"],
+        "yes_no_columns": []
+    },
+
+    "dimcancellationreason": {
+        "source_table": "employeedataplatform.bronze.dimcancellationreason",
+        "target_table": "employeedataplatform.silver.dimcancellationreason",
+        "key_columns": ["cancellation_id"],
+        "drop_columns": ["file_path"],
+        "rename_columns": {},
+        "date_columns": [],
+        "timestamp_columns": ["last_updated_timestamp"],
+        "yes_no_columns": ["is_customer_driven"]
+    },
+
+    "dimshrinkagetype": {
+        "source_table": "employeedataplatform.bronze.dimshrinkagetype",
+        "target_table": "employeedataplatform.silver.dimshrinkagetype",
+        "key_columns": ["shrinkage_type_id"],
+        "drop_columns": ["file_path"],
+        "rename_columns": {},
+        "date_columns": [],
+        "timestamp_columns": ["last_updated_timestamp"],
+        "yes_no_columns": ["is_paid", "is_planned"]
+    }
+}
