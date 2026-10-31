@@ -1,0 +1,64 @@
+
+{
+    "fact_shrinkage": {
+        "source_tables": [
+            "employeedataplatform.bronze.factshrinkage_01_04_2026",
+            "employeedataplatform.bronze.factshrinkage_02_04_2026",
+            "employeedataplatform.bronze.factshrinkage_03_04_2026",
+            "employeedataplatform.bronze.factshrinkage_04_04_2026",
+            "employeedataplatform.bronze.factshrinkage_05_04_2026"
+        ],
+        "target_table": "employeedataplatform.silver.fact_shrinkage",
+        "key_columns": ["shrinkage_id"],
+        "deduplication": {
+            "method": "latest_record",
+            "partition_columns": ["shrinkage_id"],
+            "order_column": "last_updated_timestamp"
+        },
+        "drop_columns": ["file_path"],
+        "additional_transformation": "calculate_shrinkage_duration"
+    },
+
+    "fact_work": {
+        "source_tables": [
+            "employeedataplatform.bronze.factwork_01_04_2026",
+            "employeedataplatform.bronze.factwork_02_04_2026",
+            "employeedataplatform.bronze.factwork_03_04_2026",
+            "employeedataplatform.bronze.factwork_04_04_2026",
+            "employeedataplatform.bronze.factwork_05_04_2026"
+        ],
+        "target_table": "employeedataplatform.silver.fact_work",
+        "key_columns": ["work_id"],
+        "deduplication": {
+            "method": "latest_record",
+            "partition_columns": ["work_id"],
+            "order_column": "last_updated_timestamp"
+        },
+        "drop_columns": ["file_path"],
+        "additional_transformation": null
+    },
+
+    "fact_shift": {
+        "source_tables": [
+            "employeedataplatform.bronze.factshift_01_04_2026",
+            "employeedataplatform.bronze.factshift_02_04_2026",
+            "employeedataplatform.bronze.factshift_03_04_2026",
+            "employeedataplatform.bronze.factshift_04_04_2026",
+            "employeedataplatform.bronze.factshift_05_04_2026"
+        ],
+        "target_table": "employeedataplatform.silver.factshift",
+        "key_columns": ["shift_id", "county_id"],
+        "deduplication": {
+            "method": "drop_duplicates",
+            "columns": [
+                "shift_id",
+                "people_id",
+                "county_id",
+                "scheduled_start",
+                "scheduled_end"
+            ]
+        },
+        "drop_columns": ["file_path"],
+        "additional_transformation": null
+    }
+}
