@@ -1,18 +1,12 @@
-
 {
     "fact_shrinkage": {
-        "source_tables": [
-            "employeedataplatform.bronze.factshrinkage_01_04_2026",
-            "employeedataplatform.bronze.factshrinkage_02_04_2026",
-            "employeedataplatform.bronze.factshrinkage_03_04_2026",
-            "employeedataplatform.bronze.factshrinkage_04_04_2026",
-            "employeedataplatform.bronze.factshrinkage_05_04_2026"
-        ],
+        "source_schema": "employeedataplatform.bronze",
+        "source_table_prefix": "factshrinkage_",
         "target_table": "employeedataplatform.silver.fact_shrinkage",
         "key_columns": ["shrinkage_id"],
         "deduplication": {
             "method": "latest_record",
-            "partition_columns": ["shrinkage_id"],
+            "partition_columns": ["shrinkage_id", "batch_date"],
             "order_column": "last_updated_timestamp"
         },
         "drop_columns": ["file_path"],
@@ -20,18 +14,13 @@
     },
 
     "fact_work": {
-        "source_tables": [
-            "employeedataplatform.bronze.factwork_01_04_2026",
-            "employeedataplatform.bronze.factwork_02_04_2026",
-            "employeedataplatform.bronze.factwork_03_04_2026",
-            "employeedataplatform.bronze.factwork_04_04_2026",
-            "employeedataplatform.bronze.factwork_05_04_2026"
-        ],
+        "source_schema": "employeedataplatform.bronze",
+        "source_table_prefix": "factwork_",
         "target_table": "employeedataplatform.silver.fact_work",
         "key_columns": ["work_id"],
         "deduplication": {
             "method": "latest_record",
-            "partition_columns": ["work_id"],
+            "partition_columns": ["work_id", "batch_date"],
             "order_column": "last_updated_timestamp"
         },
         "drop_columns": ["file_path"],
@@ -39,24 +28,14 @@
     },
 
     "fact_shift": {
-        "source_tables": [
-            "employeedataplatform.bronze.factshift_01_04_2026",
-            "employeedataplatform.bronze.factshift_02_04_2026",
-            "employeedataplatform.bronze.factshift_03_04_2026",
-            "employeedataplatform.bronze.factshift_04_04_2026",
-            "employeedataplatform.bronze.factshift_05_04_2026"
-        ],
-        "target_table": "employeedataplatform.silver.factshift",
-        "key_columns": ["shift_id", "county_id"],
+        "source_schema": "employeedataplatform.bronze",
+        "source_table_prefix": "factshift_",
+        "target_table": "employeedataplatform.silver.fact_shift",
+        "key_columns": ["shift_id"],
         "deduplication": {
-            "method": "drop_duplicates",
-            "columns": [
-                "shift_id",
-                "people_id",
-                "county_id",
-                "scheduled_start",
-                "scheduled_end"
-            ]
+            "method": "latest_record",
+            "partition_columns": ["shift_id", "batch_date"],
+            "order_column": "last_updated_timestamp"
         },
         "drop_columns": ["file_path"],
         "additional_transformation": null
