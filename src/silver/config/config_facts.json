@@ -1,0 +1,43 @@
+{
+    "fact_shrinkage": {
+        "source_schema": "employeedataplatform.bronze",
+        "source_table_prefix": "factshrinkage_",
+        "target_table": "employeedataplatform.silver.fact_shrinkage",
+        "key_columns": ["shrinkage_id"],
+        "deduplication": {
+            "method": "latest_record",
+            "partition_columns": ["shrinkage_id", "batch_date"],
+            "order_column": "last_updated_timestamp"
+        },
+        "drop_columns": ["file_path"],
+        "additional_transformation": "calculate_shrinkage_duration"
+    },
+
+    "fact_work": {
+        "source_schema": "employeedataplatform.bronze",
+        "source_table_prefix": "factwork_",
+        "target_table": "employeedataplatform.silver.fact_work",
+        "key_columns": ["work_id"],
+        "deduplication": {
+            "method": "latest_record",
+            "partition_columns": ["work_id", "batch_date"],
+            "order_column": "last_updated_timestamp"
+        },
+        "drop_columns": ["file_path"],
+        "additional_transformation": null
+    },
+
+    "fact_shift": {
+        "source_schema": "employeedataplatform.bronze",
+        "source_table_prefix": "factshift_",
+        "target_table": "employeedataplatform.silver.fact_shift",
+        "key_columns": ["shift_id"],
+        "deduplication": {
+            "method": "latest_record",
+            "partition_columns": ["shift_id", "batch_date"],
+            "order_column": "last_updated_timestamp"
+        },
+        "drop_columns": ["file_path"],
+        "additional_transformation": null
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.silver.dimcounty",
+    "checks": [
+        {"name": "county_id_not_null", "type": "not_null", "column": "county_id"},
+        {"name": "county_id_unique",   "type": "unique",   "column": "county_id"}
+    ]
+}

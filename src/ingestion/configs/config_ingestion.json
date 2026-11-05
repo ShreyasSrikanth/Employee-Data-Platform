@@ -1,0 +1,24 @@
+{
+    "gdrive": {
+        "parent_folder_url": "https://drive.google.com/drive/folders/15hQ089jDRLqDMElzUERfFOtAbuiQzKF_",
+        "dimensions_folder_name": "Dimensions",
+        "date_folder_format": "%d-%m-%Y",
+        "base_download_url": "https://drive.google.com/uc?export=download&id={file_id}",
+        "folder_listing_url": "https://drive.google.com/embeddedfolderview?id={folder_id}#list"
+    },
+    "target": {
+        "catalog": "employeedataplatform",
+        "schema": "bronze",
+        "volume": "raw_data",
+        "base_path": "/Volumes/employeedataplatform/bronze/raw_data"
+    },
+    "watermark": {
+        "table": "employeedataplatform.bronze.ingestion_watermark"
+    },
+    "dimensions": ["DimCancellationReason", "DimCounty", "DimPeople", "DimShrinkageType"],
+    "load": {
+        "file_format": "csv",
+        "read_options": {"header": "true", "inferSchema": "true"},
+        "mode": "overwrite"
+    }
+}

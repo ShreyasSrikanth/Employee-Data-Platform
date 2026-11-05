@@ -1,0 +1,10 @@
+{
+    "table": "employeedataplatform.gold.fact_shrinkage_snapshot",
+    "checks": [
+        {"name": "unique_per_snapshot",   "type": "unique", "columns": ["snapshot_date", "shrinkage_id"]},
+        {"name": "shrinkage_hours_range", "type": "range",  "column": "shrinkage_hours", "min": 0, "max": 24},
+        {"name": "date_exists",           "type": "referential_integrity", "child_column": "date_key",          "parent_table": "employeedataplatform.gold.dim_date"},
+        {"name": "snapshot_exists",       "type": "referential_integrity", "child_column": "snapshot_date_key", "parent_table": "employeedataplatform.gold.dim_snapshot_date"},
+        {"name": "shrinkage_type_exists", "type": "referential_integrity", "child_column": "shrinkage_type_id", "parent_table": "employeedataplatform.gold.dim_shrinkage_type"}
+    ]
+}

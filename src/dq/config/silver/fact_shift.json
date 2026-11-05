@@ -1,0 +1,10 @@
+{
+    "table": "employeedataplatform.silver.fact_shift",
+    "checks": [
+        {"name": "shift_id_not_null",       "type": "not_null", "column": "shift_id"},
+        {"name": "no_duplicates_per_batch", "type": "unique",   "columns": ["shift_id", "batch_date"]},
+        {"name": "end_after_start",         "type": "expression", "expression": "scheduled_end > scheduled_start"},
+        {"name": "people_exists",           "type": "referential_integrity", "child_column": "people_id", "parent_table": "employeedataplatform.silver.dimpeople"},
+        {"name": "county_exists",           "type": "referential_integrity", "child_column": "county_id", "parent_table": "employeedataplatform.silver.dimcounty"}
+    ]
+}

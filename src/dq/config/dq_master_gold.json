@@ -1,0 +1,16 @@
+{
+    "run": {
+        "audit_table": "employeedataplatform.audit.dq_results",
+        "layer": "GOLD",
+        "fail_on_error": true
+    },
+    "configs": [
+        "gold/dim_people.json",
+        "gold/dim_county.json",
+        "gold/dim_date.json",
+        "gold/dim_snapshot_date.json",
+        "gold/fact_work_snapshot.json",
+        "gold/fact_shift_snapshot.json",
+        "gold/fact_shrinkage_snapshot.json"
+    ]
+}

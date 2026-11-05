@@ -1,0 +1,19 @@
+{
+    "run": {
+        "audit_table": "employeedataplatform.audit.dq_results",
+        "layer": "SILVER",
+        "fail_on_error": true
+    },
+    "configs": [
+        "silver/dimpeople.json",
+        "silver/dimcounty.json",
+        "silver/dimcancellationreason.json",
+        "silver/dimshrinkagetype.json",
+        "silver/fact_work.json",
+        "silver/fact_work_current.json",
+        "silver/fact_shift.json",
+        "silver/fact_shift_current.json",
+        "silver/fact_shrinkage.json",
+        "silver/fact_shrinkage_current.json"
+    ]
+}

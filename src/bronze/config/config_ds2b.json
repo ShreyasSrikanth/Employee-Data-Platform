@@ -1,0 +1,139 @@
+{
+    "sources" : {
+        "DimCancellationReason": {
+            "raw_folder" : "Dimensions",
+            "file_format" : "csv",
+            "read_options": {"header":"true", "inferSchema":"true"},
+            "target_table": "employeedataplatform.bronze.DimCancellationReason",
+            "mode" : "overwrite"
+        },
+        "DimCounty": {
+            "raw_folder" : "Dimensions",
+            "file_format" : "csv",
+            "read_options": {"header":"true", "inferSchema":"true"},
+            "target_table": "employeedataplatform.bronze.DimCounty",
+            "mode" : "overwrite"
+        },
+        "DimPeople": {
+            "raw_folder" : "Dimensions",
+            "file_format" : "csv",
+            "read_options": {"header":"true", "inferSchema":"true"},
+            "target_table": "employeedataplatform.bronze.DimPeople",
+            "mode" : "overwrite"
+        },
+        "DimShrinkageType": {
+            "raw_folder" : "Dimensions",
+            "file_format" : "csv",
+            "read_options": {"header":"true", "inferSchema":"true"},
+            "target_table": "employeedataplatform.bronze.DimShrinkageType",
+            "mode" : "overwrite"
+        },
+        "FactWork_01_04_2026": {
+            "raw_folder": "Fact_01_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactWork_01_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShrinkage_01_04_2026": {
+            "raw_folder": "Fact_01_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShrinkage_01_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShift_01_04_2026": {
+            "raw_folder": "Fact_01_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShift_01_04_2026",
+            "mode": "overwrite"
+        },
+        "FactWork_02_04_2026": {
+            "raw_folder": "Fact_02_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactWork_02_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShrinkage_02_04_2026": {
+            "raw_folder": "Fact_02_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShrinkage_02_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShift_02_04_2026": {
+            "raw_folder": "Fact_02_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShift_02_04_2026",
+            "mode": "overwrite"
+        },
+        "FactWork_03_04_2026": {
+            "raw_folder": "Fact_03_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactWork_03_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShrinkage_03_04_2026": {
+            "raw_folder": "Fact_03_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShrinkage_03_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShift_03_04_2026": {
+            "raw_folder": "Fact_03_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShift_03_04_2026",
+            "mode": "overwrite"
+        },
+        "FactWork_04_04_2026": {
+            "raw_folder": "Fact_04_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactWork_04_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShrinkage_04_04_2026": {
+            "raw_folder": "Fact_04_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShrinkage_04_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShift_04_04_2026": {
+            "raw_folder": "Fact_04_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShift_04_04_2026",
+            "mode": "overwrite"
+        },
+        "FactWork_05_04_2026": {
+            "raw_folder": "Fact_05_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactWork_05_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShrinkage_05_04_2026": {
+            "raw_folder": "Fact_05_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShrinkage_05_04_2026",
+            "mode": "overwrite"
+        },
+        "FactShift_05_04_2026": {
+            "raw_folder": "Fact_05_04_2026",
+            "file_format": "csv",
+            "read_options": {"header": "true", "inferSchema": "true"},
+            "target_table": "employeedataplatform.bronze.FactShift_05_04_2026",
+            "mode": "overwrite"
+        }
+
+    }
+    
+}

@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.silver.fact_work",
+    "filter": "is_current = true",
+    "checks": [
+        {"name": "one_current_row_per_job", "type": "unique", "column": "work_id"}
+    ]
+}

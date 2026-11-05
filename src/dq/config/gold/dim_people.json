@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.gold.dim_people",
+    "checks": [
+        {"name": "people_id_unique", "type": "unique", "column": "people_id"},
+        {"name": "matches_silver",   "type": "reconciliation", "source_table": "employeedataplatform.silver.dimpeople"}
+    ]
+}

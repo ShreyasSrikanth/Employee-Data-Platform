@@ -1,0 +1,10 @@
+{
+    "table": "employeedataplatform.silver.fact_shrinkage",
+    "checks": [
+        {"name": "shrinkage_id_not_null",   "type": "not_null", "column": "shrinkage_id"},
+        {"name": "no_duplicates_per_batch", "type": "unique",   "columns": ["shrinkage_id", "batch_date"]},
+        {"name": "end_after_start",         "type": "expression", "expression": "end_datetime > start_datetime"},
+        {"name": "people_exists",           "type": "referential_integrity", "child_column": "people_id",         "parent_table": "employeedataplatform.silver.dimpeople"},
+        {"name": "shrinkage_type_exists",   "type": "referential_integrity", "child_column": "shrinkage_type_id", "parent_table": "employeedataplatform.silver.dimshrinkagetype"}
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "table": "employeedataplatform.silver.dimpeople",
+    "checks": [
+        {"name": "people_id_not_null", "type": "not_null", "column": "people_id"},
+        {"name": "people_id_unique",   "type": "unique",   "column": "people_id"},
+        {"name": "people_min_rows",    "type": "min_row_count", "threshold": 1}
+    ]
+}
