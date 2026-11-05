@@ -44,11 +44,13 @@ def list_gdrive_entries(urllib, folder_url, folder_id):
 
     # step 3: turn each match into a simple dictionary
     entries = []
+
     for item_id, link, name in matches:
+        subfolder = "/drive/folders/" in link
         entries.append({
             "id": item_id,
             "name": name,
-            "is_folder": "/drive/folders/" in link,   # folders link to /drive/folders/, files don't
+            "is_folder": subfolder
         })
 
     return entries

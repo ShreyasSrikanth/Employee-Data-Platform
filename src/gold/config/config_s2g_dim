@@ -1,0 +1,42 @@
+{
+    "gold_schema": "employeedataplatform.gold",
+
+    "dim_date": {
+        "date_sources": [
+            {"table": "employeedataplatform.silver.fact_shift",     "column": "scheduled_start"},
+            {"table": "employeedataplatform.silver.fact_work",      "column": "scheduled_start"},
+            {"table": "employeedataplatform.silver.fact_shrinkage", "column": "start_datetime"}
+        ],
+        "target_table": "employeedataplatform.gold.dim_date"
+    },
+
+    "dim_snapshot_date": {
+        "source_table": "employeedataplatform.silver.fact_work",
+        "batch_column": "batch_date",
+        "target_table": "employeedataplatform.gold.dim_snapshot_date"
+    },
+
+    "dim_people": {
+        "source_table": "employeedataplatform.silver.dimpeople",
+        "target_table": "employeedataplatform.gold.dim_people",
+        "key_column": "people_id"
+    },
+
+    "dim_county": {
+        "source_table": "employeedataplatform.silver.dimcounty",
+        "target_table": "employeedataplatform.gold.dim_county",
+        "key_column": "county_id"
+    },
+
+    "dim_cancellation_reason": {
+        "source_table": "employeedataplatform.silver.dimcancellationreason",
+        "target_table": "employeedataplatform.gold.dim_cancellation_reason",
+        "key_column": "cancellation_id"
+    },
+
+    "dim_shrinkage_type": {
+        "source_table": "employeedataplatform.silver.dimshrinkagetype",
+        "target_table": "employeedataplatform.gold.dim_shrinkage_type",
+        "key_column": "shrinkage_type_id"
+    }
+}

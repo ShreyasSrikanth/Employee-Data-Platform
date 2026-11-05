@@ -1,0 +1,35 @@
+{
+    "gold_schema": "employeedataplatform.gold",
+
+    "fact_shift_snapshot": {
+        "source_table": "employeedataplatform.silver.fact_shift",
+        "snapshot_table": "employeedataplatform.gold.dim_snapshot_date",
+        "target_table": "employeedataplatform.gold.fact_shift_snapshot",
+        "key_column": "shift_id",
+        "start_column": "scheduled_start",
+        "end_column": "scheduled_end",
+        "hours_column": "shift_hours"
+    },
+
+    "fact_work_snapshot": {
+        "source_table": "employeedataplatform.silver.fact_work",
+        "snapshot_table": "employeedataplatform.gold.dim_snapshot_date",
+        "target_table": "employeedataplatform.gold.fact_work_snapshot",
+        "key_column": "work_id",
+        "start_column": "scheduled_start",
+        "end_column": "scheduled_end",
+        "hours_column": "work_hours",
+        "completed_statuses": ["Completed"],
+        "planned_statuses": ["Scheduled", "Confirmed"]
+    },
+
+    "fact_shrinkage_snapshot": {
+        "source_table": "employeedataplatform.silver.fact_shrinkage",
+        "snapshot_table": "employeedataplatform.gold.dim_snapshot_date",
+        "target_table": "employeedataplatform.gold.fact_shrinkage_snapshot",
+        "key_column": "shrinkage_id",
+        "start_column": "start_datetime",
+        "end_column": "end_datetime",
+        "hours_column": "shrinkage_hours"
+    }
+}
