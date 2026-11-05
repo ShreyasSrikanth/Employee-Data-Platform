@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.silver.dimcancellationreason",
+    "checks": [
+        {"name": "cancellation_id_unique", "type": "unique", "column": "cancellation_id"},
+        {"name": "customer_driven_yes_no", "type": "accepted_values", "column": "is_customer_driven", "values": ["Yes", "No"]}
+    ]
+}

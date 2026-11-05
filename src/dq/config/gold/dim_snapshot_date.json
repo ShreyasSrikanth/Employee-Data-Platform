@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.gold.dim_snapshot_date",
+    "checks": [
+        {"name": "snapshot_date_key_unique", "type": "unique", "column": "snapshot_date_key"},
+        {"name": "snapshot_min_rows",        "type": "min_row_count", "threshold": 1}
+    ]
+}

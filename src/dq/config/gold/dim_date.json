@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.gold.dim_date",
+    "checks": [
+        {"name": "date_key_unique",   "type": "unique",   "column": "date_key"},
+        {"name": "date_key_not_null", "type": "not_null", "column": "date_key"}
+    ]
+}

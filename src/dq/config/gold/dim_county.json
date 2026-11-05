@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.gold.dim_county",
+    "checks": [
+        {"name": "county_id_unique", "type": "unique", "column": "county_id"},
+        {"name": "matches_silver",   "type": "reconciliation", "source_table": "employeedataplatform.silver.dimcounty"}
+    ]
+}

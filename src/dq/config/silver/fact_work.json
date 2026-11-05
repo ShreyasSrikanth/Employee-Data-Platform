@@ -1,0 +1,15 @@
+{
+    "table": "employeedataplatform.silver.fact_work",
+    "checks": [
+        {"name": "work_id_not_null",        "type": "not_null", "column": "work_id"},
+        {"name": "no_duplicates_per_batch", "type": "unique",   "columns": ["work_id", "batch_date"]},
+        {"name": "status_values",           "type": "accepted_values", "column": "status", "values": ["Completed", "Scheduled", "Confirmed", "Cancelled"]},
+        {"name": "end_after_start",         "type": "expression", "expression": "scheduled_end > scheduled_start"},
+        {"name": "people_exists",           "type": "referential_integrity", "child_column": "people_id",       "parent_table": "employeedataplatform.silver.dimpeople"},
+        {"name": "county_exists",           "type": "referential_integrity", "child_column": "county_id",       "parent_table": "employeedataplatform.silver.dimcounty"},
+        {"name": "cancellation_exists",     "type": "referential_integrity", "child_column": "cancellation_id", "parent_table": "employeedataplatform.silver.dimcancellationreason"},
+        {"name": "cancellation_only_when_cancelled", "type": "expression",
+         "expression": "status = 'Cancelled' OR cancellation_id IS NULL",
+         "severity": "warn", "on_failure": "warn"}
+    ]
+}

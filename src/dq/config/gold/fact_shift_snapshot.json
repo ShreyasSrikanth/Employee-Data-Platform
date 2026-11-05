@@ -1,0 +1,10 @@
+{
+    "table": "employeedataplatform.gold.fact_shift_snapshot",
+    "checks": [
+        {"name": "unique_per_snapshot", "type": "unique", "columns": ["snapshot_date", "shift_id"]},
+        {"name": "shift_hours_range",   "type": "range",  "column": "shift_hours", "min": 0, "max": 24},
+        {"name": "date_exists",         "type": "referential_integrity", "child_column": "date_key",          "parent_table": "employeedataplatform.gold.dim_date"},
+        {"name": "snapshot_exists",     "type": "referential_integrity", "child_column": "snapshot_date_key", "parent_table": "employeedataplatform.gold.dim_snapshot_date"},
+        {"name": "people_exists",       "type": "referential_integrity", "child_column": "people_id",         "parent_table": "employeedataplatform.gold.dim_people"}
+    ]
+}

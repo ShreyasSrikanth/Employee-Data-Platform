@@ -1,0 +1,8 @@
+{
+    "table": "employeedataplatform.silver.dimshrinkagetype",
+    "checks": [
+        {"name": "shrinkage_type_id_unique", "type": "unique", "column": "shrinkage_type_id"},
+        {"name": "is_paid_yes_no",    "type": "accepted_values", "column": "is_paid",    "values": ["Yes", "No"]},
+        {"name": "is_planned_yes_no", "type": "accepted_values", "column": "is_planned", "values": ["Yes", "No"]}
+    ]
+}

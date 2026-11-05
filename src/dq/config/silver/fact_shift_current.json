@@ -1,0 +1,7 @@
+{
+    "table": "employeedataplatform.silver.fact_shift",
+    "filter": "is_current = true",
+    "checks": [
+        {"name": "one_current_row_per_shift", "type": "unique", "column": "shift_id"}
+    ]
+}
