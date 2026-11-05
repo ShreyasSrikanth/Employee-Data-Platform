@@ -1,0 +1,168 @@
+resources:
+  jobs:
+    Employee_data_platform:
+      name: Employee_data_platform
+      email_notifications:
+        on_failure:
+          - shreyassrikanth997@gmail.com
+      schedule:
+        quartz_cron_expression: 14 30 10 * * ?
+        timezone_id: Europe/London
+        pause_status: UNPAUSED
+      tasks:
+        - task_key: Gdrive_Ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/ingestion/notebooks/dim-fact-ingestion
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/ingestion/configs/config_ingestion.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 300000
+          disable_auto_optimization: false
+        - task_key: ds_2_bronze
+          depends_on:
+            - task_key: Gdrive_Ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/bronze/notebooks/ds2b
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/bronze/config/config_ds2b.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 300000
+          disable_auto_optimization: false
+        - task_key: b2s_dimcancellationreason
+          depends_on:
+            - task_key: ds_2_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/notebooks/b2s_dimcancellationreason
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/config/config_dimensions.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 900000
+          disable_auto_optimization: false
+        - task_key: b2s_dimcounty
+          depends_on:
+            - task_key: ds_2_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/notebooks/b2s_dimcounty
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/config/config_dimensions.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 900000
+          disable_auto_optimization: false
+        - task_key: b2s_dimpeople
+          depends_on:
+            - task_key: ds_2_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/notebooks/b2s_dimpeople
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/config/config_dimensions.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 900000
+          disable_auto_optimization: false
+        - task_key: b2s_dimshrinkagetype
+          depends_on:
+            - task_key: ds_2_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/notebooks/b2s_dimshrinkagetype
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/config/config_dimensions.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 300000
+          disable_auto_optimization: false
+        - task_key: b2s_facts
+          depends_on:
+            - task_key: ds_2_bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/notebooks/b2s_facts
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/silver/config/config_facts.json
+            source: WORKSPACE
+          max_retries: 1
+          min_retry_interval_millis: 900000
+          disable_auto_optimization: false
+        - task_key: s2g_dimcancellationreason
+          depends_on:
+            - task_key: b2s_dimcancellationreason
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/dimensions/s2g_dimcancellationreason
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_dim
+            source: WORKSPACE
+        - task_key: s2g_dimcounty
+          depends_on:
+            - task_key: b2s_dimcounty
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/dimensions/s2g_dimcounty
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_dim
+            source: WORKSPACE
+        - task_key: s2g_dimdate
+          depends_on:
+            - task_key: b2s_facts
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/dimensions/s2g_dimdate
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_dim
+            source: WORKSPACE
+        - task_key: s2g_dimpeople
+          depends_on:
+            - task_key: b2s_dimpeople
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/dimensions/s2g_dimpeople
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_dim
+            source: WORKSPACE
+        - task_key: s2g_dimshrinkagetype
+          depends_on:
+            - task_key: b2s_dimshrinkagetype
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/dimensions/s2g_dimshrinkagetype
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_dim
+            source: WORKSPACE
+        - task_key: s2g_dimsnapshotdate
+          depends_on:
+            - task_key: b2s_facts
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/dimensions/s2g_dimsnapshotdate
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_dim
+            source: WORKSPACE
+        - task_key: s2g_factshiftsnapshot
+          depends_on:
+            - task_key: b2s_facts
+            - task_key: s2g_dimsnapshotdate
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/facts/s2g_factshiftsnapshot
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_facts
+            source: WORKSPACE
+          max_retries: 2
+          min_retry_interval_millis: 900000
+          disable_auto_optimization: false
+        - task_key: s2g_factshrinkagesnapshot
+          depends_on:
+            - task_key: b2s_facts
+            - task_key: s2g_dimsnapshotdate
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/facts/s2g_factshrinkagesnapshot
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_facts
+            source: WORKSPACE
+        - task_key: s2g_factworksnapshot
+          depends_on:
+            - task_key: s2g_dimsnapshotdate
+            - task_key: b2s_facts
+          notebook_task:
+            notebook_path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/notebooks/facts/s2g_factworksnapshot
+            base_parameters:
+              path: /Workspace/Users/shreyassrikanth997@gmail.com/Employee-Data-Platform/src/gold/config/config_s2g_facts
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
